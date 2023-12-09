@@ -495,12 +495,12 @@ function ConROC:OptionRadioButtonSpell(_spellData, i, j, _spellFrame, _radioButt
 			for _, radioButton in ipairs(_radioButtonsTable) do
 				if radioButton ~= self then
 					radioButton:SetChecked(false)
-					ConROCWarlockSpells[checkboxName .. radioButton.spellCheckbox] = radioButton:GetChecked()
+					ConROCHunterSpells[checkboxName .. radioButton.spellCheckbox] = radioButton:GetChecked()
 					
 				else
 					-- Perform any additional logic based on the selected button
 					self:SetChecked(true)
-					ConROCWarlockSpells[checkboxName .. radioButton.spellCheckbox] = self:GetChecked()
+					ConROCHunterSpells[checkboxName .. radioButton.spellCheckbox] = self:GetChecked()
 					
 				end
 			end
