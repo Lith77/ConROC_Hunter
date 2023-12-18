@@ -81,16 +81,7 @@ function ConROC:EnableRotationModule()
 end
 function ConROC:PLAYER_TALENT_UPDATE()
 	ConROC:SpecUpdate();
-	if ConROCSpellmenuFrame:IsVisible() then
-		ConROCSpellmenuFrame_CloseButton:Hide();
-		ConROCSpellmenuFrame_Title:Hide();
-		ConROCSpellmenuClass:Hide();
-		ConROCSpellmenuFrame_OpenButton:Show();
-		optionsOpened = false;
-		ConROCSpellmenuFrame:SetSize((90) + 14, (15) + 14)
-	else
-		ConROCSpellmenuFrame:SetSize((90) + 14, (15) + 14)
-	end
+    ConROC:closeSpellmenu();
 end
 --Ranks
 --Beast Mastery
@@ -133,6 +124,7 @@ local _RaptorStrike = Surv_Ability.RaptorStrikeRank1;
 local _WingClip = Surv_Ability.WingClipRank1;
 local _WyvernSting = Surv_Ability.WyvernStingRank1;
 
+function ConROC:UpdateSpellID()
 --Beast Mastery
 if IsSpellKnown(BM_Ability.AspectoftheHawkRank6) then _AspectoftheHawk = BM_Ability.AspectoftheHawkRank6;
 elseif IsSpellKnown(BM_Ability.AspectoftheHawkRank5) then _AspectoftheHawk = BM_Ability.AspectoftheHawkRank5;
@@ -257,7 +249,10 @@ RaptorStrike = _RaptorStrike,
 WingClip = _WingClip,
 WyvernSting = _WyvernSting,
 }
+end
+ConROC:UpdateSpellID()
 function ConROC.Hunter.Damage(_, timeShift, currentSpell, gcd)
+ConROC:UpdateSpellID()
 --Character
 	local plvl 												= UnitLevel('player');
 	

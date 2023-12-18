@@ -496,12 +496,12 @@ function ConROC:OptionRadioButtonSpell(_spellData, i, j, _spellFrame, _radioButt
 			for _, radioButton in ipairs(_radioButtonsTable) do
 				if radioButton ~= self then
 					radioButton:SetChecked(false)
-					ConROCHunterSpells[checkboxName .. radioButton.spellCheckbox] = radioButton:GetChecked()
+					ConROCWarlockSpells[checkboxName .. radioButton.spellCheckbox] = radioButton:GetChecked()
 					
 				else
 					-- Perform any additional logic based on the selected button
 					self:SetChecked(true)
-					ConROCHunterSpells[checkboxName .. radioButton.spellCheckbox] = self:GetChecked()
+					ConROCWarlockSpells[checkboxName .. radioButton.spellCheckbox] = self:GetChecked()
 					
 				end
 			end
@@ -765,7 +765,7 @@ function ConROC:OptionNone(_spellData, i, j, _spellFrame, _checkType, _radioButt
     lastFrame:Show();
 end
 
-function ConROC:SpellMenuUpdate()
+function ConROC:SpellMenuUpdate(newSpell)
     lastFrame = ConROCScrollChild;
     local anyHLVisible = false;
     scrollHeight = 0;
@@ -1018,6 +1018,9 @@ function ConROC:SpellMenuUpdate()
         ConROCScrollContainer:Show();
         ConROCScrollChild:Show();
     end
+	if newSpell then
+		ConROC:closeSpellmenu();
+	end
 end
 
 function ConROC:RoleProfile()
